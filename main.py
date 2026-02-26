@@ -16,11 +16,17 @@ def main():
 
     while True:
         log_state()
-        player.draw(screen)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+        player.update(dt)
+
+        screen.fill("black")
+
+        player.draw(screen)
+
         pygame.display.flip()
+
         dt = interal_clock.tick(60) / 1000
 
 
