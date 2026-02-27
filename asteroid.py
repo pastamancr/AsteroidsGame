@@ -21,11 +21,12 @@ class Asteroid(CircleShape):
         self.kill()
         if self.radius <= ASTEROID_MIN_RADIUS:
             return
+
         log_event("asteroid_split")
 
-        asteroid_one = Asteroid(self.position.x, self.position.y, self.radius - ASTEROID_MIN_RADIUS)
-        asteroid_two = Asteroid(self.position.x, self.position.y, self.radius - ASTEROID_MIN_RADIUS)
+        new_radius = self.radius - ASTEROID_MIN_RADIUS
+        random_angle = random_uniform(20, 50)
 
-        asteroid_one.velocity = self.velocity.rotate(random.uniform(20, 50)) * 1.2
-        asteroid_two.velocity = self.velocity.rotate(random.uniform(20, 50)) * 1.2
-
+        for angle in [random_angle, -random_angle]:
+            new_asteroid = Asteroid(self.position.x, self.position.y, new_radius)
+            new_asteroid.velocity = self.velocity.rotate(angle) * 1.2

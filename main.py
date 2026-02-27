@@ -49,6 +49,7 @@ def main():
                     log_event("asteroid_shot")
                     shot.kill()
                     asteroid.split()
+
         screen.fill("black")
         for drawn in drawable:
             drawn.draw(screen)
